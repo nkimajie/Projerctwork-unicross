@@ -57,7 +57,7 @@ class _ClearanceProgressState extends State<ClearanceProgress> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cabin',
-                    color: Colors.blue,
+                    color: Color(0xFF0988CC),
                   ),
                 ),
                 SizedBox(
@@ -105,7 +105,6 @@ class _ClearanceProgressState extends State<ClearanceProgress> {
                   widgetStep: 7,
                   userCurrentStep: progress2 ?? 0,
                 ),
-
               ],
             ),
           ),
@@ -133,20 +132,31 @@ class ProgressWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     log('userCurrentStep : $userCurrentStep and widgetStep $widgetStep');
     return Card(
-      color: widgetStep == userCurrentStep
-          ? Colors.green[300]
-          : userCurrentStep < widgetStep
-          ? Color(0xff9e9e9e)
-          : Colors.green[300],
+      shadowColor: Color(0xFF0988CC),
+      elevation: 3,
+      // color: widgetStep == userCurrentStep
+      //     ? Colors.green[300]
+      //     : userCurrentStep < widgetStep
+      //         ? Color(0xff9e9e9e)
+      //         : Colors.green[300],
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       child: ListTile(
+        trailing: Icon(
+          Icons.check_circle,
+          color: widgetStep == userCurrentStep
+              ? Colors.green
+              : userCurrentStep < widgetStep
+                  ? Colors.transparent
+                  : Colors.green,
+        ),
         title: Text(
           title,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'Cabin',
-            color: Colors.blue,
+            color: Color(0xFF0988CC),
           ),
         ),
         subtitle: Text(

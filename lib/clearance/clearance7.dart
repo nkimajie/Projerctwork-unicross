@@ -16,7 +16,7 @@ class _Clearance7State extends State<Clearance7> {
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF0988CC),
         title: Center(
           child: Text(
             'Final stage',
@@ -48,7 +48,7 @@ class _Clearance7State extends State<Clearance7> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Cabin',
-                        color: Colors.blue,
+                        color: Color(0xFF0988CC),
                       ),
                     ),
                     subtitle: Text(
@@ -61,7 +61,11 @@ class _Clearance7State extends State<Clearance7> {
                       ),
                     ),
                     trailing: TextButton(
-                      // color: Colors.blue,
+                      // color: Color(0xFF0988CC),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xFF0988CC)),
+                      ),
                       onPressed: () async {
                         final prefs2 = await SharedPreferences.getInstance();
                         prefs2.setInt('counter2', 7);

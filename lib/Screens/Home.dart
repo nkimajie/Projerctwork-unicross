@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mywork/Screens/Login.dart';
 import 'package:mywork/Screens/Registration1.dart';
 import 'package:mywork/Screens/Registration2.dart';
@@ -37,10 +38,10 @@ class _HomeState extends State<Home> {
 
   void setIntValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('counter',0);
+    prefs.setInt('counter', 0);
 
     SharedPreferences prefs2 = await SharedPreferences.getInstance();
-    prefs.setInt('counter2',0);
+    prefs.setInt('counter2', 0);
   }
 
   @override
@@ -49,10 +50,10 @@ class _HomeState extends State<Home> {
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF0988CC),
         title: Center(
           child: Text(
-            'MyCrutech',
+            'UNICROSS GUIDE',
             style: TextStyle(
               fontSize: 20,
               fontFamily: 'Cabin',
@@ -62,14 +63,13 @@ class _HomeState extends State<Home> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(top:13.0,right: 13),
+            padding: const EdgeInsets.only(top: 13.0, right: 13),
             child: GestureDetector(
               onTap: () async {
                 await _auth.signOut();
                 setIntValue();
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Login()));
-
               },
               child: Text(
                 'Logout',
@@ -107,15 +107,15 @@ class _HomeState extends State<Home> {
                     Container(
                       width: 90,
                       height: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                          bottomLeft: Radius.circular(8),
-                          bottomRight: Radius.circular(8),
-                        ),
-                        color: Colors.white,
-                      ),
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.only(
+                      //     topLeft: Radius.circular(8),
+                      //     topRight: Radius.circular(8),
+                      //     bottomLeft: Radius.circular(8),
+                      //     bottomRight: Radius.circular(8),
+                      //   ),
+                      //   color: Colors.white,
+                      // ),
                       child: Image(
                         image: AssetImage('assets/splash.png'),
                       ),
@@ -132,7 +132,7 @@ class _HomeState extends State<Home> {
                               fontSize: 14,
                               fontFamily: 'Cabin',
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue,
+                              color: Color(0xFF0988CC),
                             ),
                           ),
                           SizedBox(
@@ -145,7 +145,7 @@ class _HomeState extends State<Home> {
                               style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: 'Cabin',
-                                color: Color(0xff64b5f6),
+                                color: Color(0xFF0988CC),
                               ),
                             ),
                           ),
@@ -191,32 +191,37 @@ class _HomeState extends State<Home> {
                         );
                       },
                       child: Container(
-                        height: 80,
-                        width: screenWidth,
+                        width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xffCFD8DC),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Color(0xFF0988CC)),
                         ),
-                        child: ListTile(
-                          leading: Image(
-                            image: AssetImage('assets/reg1.png'),
-                          ),
-                          title: Text(
-                            'Start Registration',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cabin',
-                              color: Colors.blue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ListTile(
+                            leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SvgPicture.asset("assets/signUp.svg"),
                             ),
-                          ),
-                          subtitle: Text(
-                            'Get directions to registration offices and required documents',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'Cabin',
-                              color: Color(0xff424242),
+                            title: Text(
+                              'Start Registration',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Cabin',
+                                color: Color(0xFF0988CC),
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Get directions to registration offices and required documents',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Cabin',
+                                color: Color(0xff424242),
+                              ),
                             ),
                           ),
                         ),
@@ -233,35 +238,38 @@ class _HomeState extends State<Home> {
                                 builder: (context) => Progress()));
                       },
                       child: Container(
-                        height: 80,
-                        width: screenWidth,
+                        width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xffCFD8DC),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: ListTile(
-                          leading: Container(
-                            width: 60,
-                            child: Image(
-                              image: AssetImage('assets/book.png'),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: Color(0xFF0988CC),
+                            )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ListTile(
+                            leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SvgPicture.asset("assets/viewReg.svg"),
                             ),
-                          ),
-                          title: Text(
-                            'View Registration Progress',
-                            style: TextStyle(
-                              fontSize:18,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cabin',
-                              color: Colors.blue,
+                            title: Text(
+                              'View Registration Progress',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Cabin',
+                                color: Color(0xFF0988CC),
+                              ),
                             ),
-                          ),
-                          subtitle: Text(
-                            'See how far you have gone with your registration ',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'Cabin',
-                              color: Color(0xff424242),
+                            subtitle: Text(
+                              'See how far you have gone with your registration ',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Cabin',
+                                color: Color(0xff424242),
+                              ),
                             ),
                           ),
                         ),
@@ -286,7 +294,7 @@ class _HomeState extends State<Home> {
                             widget = Clearance4();
                             break;
                           case 4:
-                            widget =Clearance5();
+                            widget = Clearance5();
                             break;
                           case 5:
                             widget = Clearance6();
@@ -305,32 +313,39 @@ class _HomeState extends State<Home> {
                         );
                       },
                       child: Container(
-                        height: 80,
-                        width: screenWidth,
+                        width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xffCFD8DC),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: Color(0xFF0988CC),
+                          ),
                         ),
-                        child: ListTile(
-                          leading: Image(
-                            image: AssetImage('assets/reg1.png'),
-                          ),
-                          title: Text(
-                            'Start Clearance',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cabin',
-                              color: Colors.blue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ListTile(
+                            leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SvgPicture.asset("assets/clearence.svg"),
                             ),
-                          ),
-                          subtitle: Text(
-                            'Get directions to registration offices and required documents',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'Cabin',
-                              color: Color(0xff424242),
+                            title: Text(
+                              'Start Clearance',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Cabin',
+                                color: Color(0xFF0988CC),
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Get directions to registration offices and required documents',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Cabin',
+                                color: Color(0xff424242),
+                              ),
                             ),
                           ),
                         ),
@@ -347,35 +362,42 @@ class _HomeState extends State<Home> {
                                 builder: (context) => ClearanceProgress()));
                       },
                       child: Container(
-                        height: 80,
-                        width: screenWidth,
+                        width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xffCFD8DC),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Color(0xFF0988CC)),
                         ),
-                        child: ListTile(
-                          leading: Container(
-                            width: 60,
-                            child: Image(
-                              image: AssetImage('assets/book.png'),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: ListTile(
+                            // trailing: Icon(Icons.arrow_forward_ios,
+                            //     color: Color(0xFF0988CC)),
+                            leading: Container(
+                              width: 60,
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: SvgPicture.asset("assets/progress.svg"),
+                              ),
                             ),
-                          ),
-                          title: Text(
-                            'View Clearance Progress',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cabin',
-                              color: Colors.blue,
+                            title: Text(
+                              'View Clearance Progress',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Cabin',
+                                color: Color(0xFF0988CC),
+                              ),
                             ),
-                          ),
-                          subtitle: Text(
-                            'See how far you have gone with your Clearance ',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'Cabin',
-                              color: Color(0xff424242),
+                            subtitle: Text(
+                              'See how far you have gone with your Clearance ',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Cabin',
+                                color: Color(0xff424242),
+                              ),
                             ),
                           ),
                         ),

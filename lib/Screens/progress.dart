@@ -49,7 +49,7 @@ class _ProgressState extends State<Progress> {
                 tileMode: TileMode.clamp),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: ListView(
               children: [
                 Text(
@@ -58,7 +58,7 @@ class _ProgressState extends State<Progress> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Cabin',
-                    color: Colors.blue,
+                    color: Color(0xFF0988CC),
                   ),
                 ),
                 SizedBox(
@@ -100,7 +100,6 @@ class _ProgressState extends State<Progress> {
                   widgetStep: 6,
                   userCurrentStep: progress ?? 0,
                 ),
-
               ],
             ),
           ),
@@ -111,7 +110,6 @@ class _ProgressState extends State<Progress> {
 }
 
 class ProgressWidget extends StatelessWidget {
-
   const ProgressWidget({
     Key key,
     @required this.title,
@@ -129,20 +127,31 @@ class ProgressWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     log('userCurrentStep : $userCurrentStep and widgetStep $widgetStep');
     return Card(
-      color: widgetStep == userCurrentStep
-          ? Colors.green[300]
-          : userCurrentStep < widgetStep
-              ? Color(0xff9e9e9e)
-              : Colors.green[300],
+      shadowColor: Color(0xFF0988CC),
+      elevation: 3,
+      // color: widgetStep == userCurrentStep
+      //     ? Colors.green[300]
+      //     : userCurrentStep < widgetStep
+      //         ? Colors.white
+      //         : Colors.green[300],
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       child: ListTile(
+        trailing: Icon(
+          Icons.check_circle,
+          color: widgetStep == userCurrentStep
+              ? Colors.green
+              : userCurrentStep < widgetStep
+                  ? Colors.transparent
+                  : Colors.green,
+        ),
         title: Text(
           title,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'Cabin',
-            color: Colors.blue,
+            color: Color(0xFF0988CC),
           ),
         ),
         subtitle: Text(

@@ -16,7 +16,7 @@ class _Registration2State extends State<Registration2> {
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF0988CC),
         title: Center(
           child: Text(
             'Stage 2',
@@ -48,7 +48,7 @@ class _Registration2State extends State<Registration2> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Cabin',
-                        color: Colors.blue,
+                        color: Color(0xFF0988CC),
                       ),
                     ),
                     subtitle: Text(
@@ -61,7 +61,11 @@ class _Registration2State extends State<Registration2> {
                       ),
                     ),
                     trailing: TextButton(
-                      // color: Colors.blue,
+                      // color: Color(0xFF0988CC),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xFF0988CC)),
+                      ),
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setInt('counter', 2);

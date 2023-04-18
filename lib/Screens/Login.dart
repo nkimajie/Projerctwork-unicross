@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:mywork/Screens/Home.dart';
 import 'package:mywork/Screens/SignUp.dart';
 
-class Login extends StatefulWidget {//
+class Login extends StatefulWidget {
+  //
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   String email;
@@ -24,82 +24,88 @@ class _LoginState extends State<Login> {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
-    void signUserIn()async {
+    void signUserIn() async {
+      try {
+        final user = await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
 
-      try{
-      final user=  await _auth.signInWithEmailAndPassword(email: email, password: password);
-
-        if(user!=null){
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successful'),));
+        if (user != null) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Login Successful'),
+          ));
           userEmail = _auth.currentUser.email;
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Home()));
         }
-
-      }on FirebaseAuthException catch (e) {
-          if (e.code == 'user-not-found') {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed, user not found'),));
-          } else if (e.code == 'wrong-password') {
-           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed check details'),));
-          }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Login failed, user not found'),
+          ));
+        } else if (e.code == 'wrong-password') {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Login failed check details'),
+          ));
+        }
       }
     }
-
 
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-
-            gradient: LinearGradient(
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomRight,
-                stops: [0.0,1.0],
-                colors: [
-
-                  Color(0xffE8F5E9),
-                  Color(0xffE0F7FA),
-                ],
-                tileMode: TileMode.clamp
-            ),
-          ),
-          width:screenWidth,
+          decoration: BoxDecoration(color: Colors.white
+              // gradient: LinearGradient(
+              //   begin: FractionalOffset.topLeft,
+              //   end: FractionalOffset.bottomRight,
+              //   stops: [0.0, 1.0],
+              //   colors: [
+              //     Color(0xffE8F5E9),
+              //     Color(0xffE0F7FA),
+              //   ],
+              //   tileMode: TileMode.clamp,
+              // ),
+              ),
+          width: screenWidth,
           height: screenHeight,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: ListView(
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: 30,
                     ),
-                    Text('Welcome back to',
+                    Text(
+                      'Welcome back to',
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Cabin',
-                        color: Color(0xff2196f3),
+                        color: Color(0xFF0988CC),
                       ),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Text('MyCRUTECH!',
+                    Text(
+                      'UNICROSS GUIDE!',
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Cabin',
-                        color: Color(0xff2196f3),
+                        color: Color(0xFF0988CC),
                       ),
                     ),
                     SizedBox(
                       height: 15,
                     ),
-                    Text('Enter the following details to Sign in....',
+                    Text(
+                      'Enter the following details to Sign in....',
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: 'Cabin',
-                        color: Color(0xff64b5f6),
+                        color: Color(0xFF0988CC),
                       ),
                     ),
                     SizedBox(
@@ -118,40 +124,34 @@ class _LoginState extends State<Login> {
                         color: Colors.white,
                       ),
                       child: Image(
-                        image:  AssetImage('assets/splash.png'),
+                        image: AssetImage('assets/splash.png'),
                       ),
                     ),
                     SizedBox(
                       height: 30,
                     ),
                     TextFormField(
-                      onChanged:(value){
-                        email=value;
+                      onChanged: (value) {
+                        email = value;
                       },
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: BorderSide(
-                            color: Color(
-                              0xff2196f3,
-                            ),
+                            color: Color(0xFF0988CC),
                           ),
                         ),
                         labelText: 'Email',
-                        labelStyle:TextStyle(
+                        labelStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
-                          color: Color(
-                            0xff64b5f6,
-                          ),
+                          color: Color(0xFF0988CC),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: BorderSide(
-                            color: Color(
-                              0xff2196f3,
-                            ),
+                            color: Color(0xFF0988CC),
                           ),
                         ),
                       ),
@@ -160,33 +160,27 @@ class _LoginState extends State<Login> {
                       height: 20,
                     ),
                     TextFormField(
-                      onChanged:(value){
-                        password=value;
+                      onChanged: (value) {
+                        password = value;
                       },
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: BorderSide(
-                            color: Color(
-                              0xff2196f3,
-                            ),
+                            color: Color(0xFF0988CC),
                           ),
                         ),
                         labelText: 'Password',
-                        labelStyle:TextStyle(
+                        labelStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
-                          color: Color(
-                            0xff64b5f6,
-                          ),
+                          color: Color(0xFF0988CC),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: BorderSide(
-                            color: Color(
-                              0xff2196f3,
-                            ),
+                            color: Color(0xFF0988CC),
                           ),
                         ),
                       ),
@@ -202,27 +196,30 @@ class _LoginState extends State<Login> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignUP()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUP()));
                           },
-                          child:Container(
-                            child:  Text('Don''\'t have an account?',
+                          child: Container(
+                            child: Text(
+                              'Don' '\'t have an account?',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.normal,
                                 fontFamily: 'Cabin',
-                                color: Color(0xff2196f3),
+                                color: Color(0xFF0988CC),
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         signUserIn();
                       },
                       child: Container(
@@ -230,13 +227,11 @@ class _LoginState extends State<Login> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Color(
-                            0xff2196f3,
-                          ),
+                          color: Color(0xFF0988CC),
                         ),
                         child: Center(
                           child: Container(
-                            child:  Text(
+                            child: Text(
                               'Sign In',
                               style: TextStyle(
                                 fontFamily: 'manrope',
@@ -259,4 +254,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-
